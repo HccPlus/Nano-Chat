@@ -1,17 +1,35 @@
 
 function open_chat(chatID) {
     // 请求服务器打开该聊天
+    window.location.assign('/index/m-chat.html');
+}
+
+function enter() {
+    let keyCode = event.keyCode || event.which || event.charCode;
+    let ctrlKey = event.ctrlKey || event.metaKey;
+    if (keyCode == 13) {
+        if (ctrlKey) {
+            document.getElementById("input_main").value += '\n';
+            return;
+        }
+        event.preventDefault();
+        send();
+    }
 }
 
 function send() {
 
+    // 获取消息并将换行符转换为<br />
+    let newMessage = document.getElementById("input_main").value;
+    document.getElementById("input_main").value = "";
+    newMessage = newMessage.replace(/ /gm, "&#160&#160");
+    newMessage = newMessage.replace(/\n/gm, "<br />");
+
     // 若消息为空则退出
-    newMessage = document.getElementById("input_main").value;
     if (!newMessage) {
         alert("不能发送空消息！");
         return;
     }
-    document.getElementById("input_main").value = "";
 
     // 新建row并插入HTML
     document.getElementById("latest").id = "";

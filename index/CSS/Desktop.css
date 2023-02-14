@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-image: url("/src/bkg1.jpg");
+    background-image: url("/src/bkg2.jpg");
     background-size: 120vw 120vh;
     background-attachment: fixed;
     overflow: hidden;
@@ -16,6 +16,7 @@ h1 {
     color: #404040;
     margin: 0.4em auto;
     font-size: 2em;
+    user-select: none;
 }
 
 h2 {
@@ -155,10 +156,6 @@ h2 {
     scroll-behavior: smooth;
 }
 
-.message_pad::-webkit-scrollbar {
-    display: none;
-}
-
 .message_row {
     display: grid;
     justify-content: left;
@@ -259,7 +256,7 @@ h2 {
     border-radius: 0.4em;
     padding: 0.8em;
     outline: none;
-    font-size: 1.4em;
+    font-size: 1.2em;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -279,6 +276,7 @@ h2 {
     font-size: 1em;
     font-weight: bold;
     color: #ffffff;
+    user-select: none;
 }
 
 #send:active {

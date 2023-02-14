@@ -14,7 +14,7 @@
         const style = document.createElement('link');
 
         if (screen == "Phone") {
-            window.location.assign('m-index.html');
+            window.location.assign('/index/m-index.html');
             style.href = "/index/CSS/Phone.css";
         } else if (screen == "Desktop") {
             style.href = "/index/CSS/Desktop.css";
@@ -201,7 +201,7 @@
 
                 <div id="input_bar">
                     <textarea type="text" id="input_main"
-                        onkeydown="if (event.keyCode == 13) {event.preventDefault(); send();}"></textarea>
+                        onkeydown="enter();"></textarea>
                     <button id="send" onclick="send();">发送</button>
                 </div>
 
