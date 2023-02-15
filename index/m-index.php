@@ -16,7 +16,7 @@
         if (screen == "Phone") {
             style.href = "/index/CSS/Phone.css";
         } else if (screen == "Desktop") {
-            window.location.assign('index.html');
+            window.location.assign('/index/index.php');
         }
 
         style.rel = "stylesheet";

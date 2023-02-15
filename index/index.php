@@ -14,7 +14,7 @@
         const style = document.createElement('link');
 
         if (screen == "Phone") {
-            window.location.assign('/index/m-index.html');
+            window.location.assign('/index/m-index.php');
             style.href = "/index/CSS/Phone.css";
         } else if (screen == "Desktop") {
             style.href = "/index/CSS/Desktop.css";
