@@ -35,16 +35,6 @@
 </head>
 
 <body>
-    <div>
-        <span id="ball_1" class="ball"></span>
-        <span id="ball_2" class="ball"></span>
-        <span id="ball_3" class="ball"></span>
-        <span id="ball_4" class="ball"></span>
-        <span id="ball_5" class="ball"></span>
-        <span id="ball_6" class="ball"></span>
-        <span id="ball_7" class="ball"></span>
-        <span id="ball_8" class="ball"></span>
-    </div>
     <div id="top">
         <h1>示例群聊(3)</h1>
     </div>

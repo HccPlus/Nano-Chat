@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 
+<?php
+
+$LogInStatus = false;
+$UserName = null;
+$cookie = $_COOKIE["user"];
+
+include "PHP/main.php";
+$ReadAge = add_read_age();
+$UserName = check_cookie($cookie);
+if ($UserName) $LogInStatus = true;
+set_cookie($UserName, $ReadAge);
+
+if ($LogInStatus) {
+    echo "已登录";
+} else {
+    echo "未登录";
+}
+
+?>
+
 <html lang="zh-cn">
 
 <head>
@@ -31,21 +51,11 @@
             document.getElementById("latest").scrollIntoView();
         }, 1600);
     </script>
-    <script type="text/javascript" src="/index/js/main.js"></script>
+    
+    <script src="js/main.js"></script>
 </head>
 
 <body>
-    <div>
-        <span id="ball_1" class="ball"></span>
-        <span id="ball_2" class="ball"></span>
-        <span id="ball_3" class="ball"></span>
-        <span id="ball_4" class="ball"></span>
-        <span id="ball_5" class="ball"></span>
-        <span id="ball_6" class="ball"></span>
-        <span id="ball_7" class="ball"></span>
-        <span id="ball_8" class="ball"></span>
-    </div>
-
     <div id="container">
         <h1>NanoChat</h1>
         <div id="content">

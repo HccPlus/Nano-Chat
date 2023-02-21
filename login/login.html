@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<?php
+
+$LogInStatus = false;
+$UserName = null;
+$cookie = $_COOKIE["user"];
+
+include "PHP/main.php";
+$ReadAge = add_read_age();
+$UserName = check_cookie($cookie);
+if ($UserName) $LogInStatus = true;
+set_cookie($UserName, $ReadAge);
+
+if ($LogInStatus) {
+    echo "已登录";
+} else {
+    echo "未登录";
+}
+
+?>
+
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="" />
+    <title>NanoChat</title>
+    <script>
+        let screen = "Phone";
+        screen = window.innerWidth >= 1080 ? "FHD" : screen;
+        screen = window.innerWidth >= 1440 ? "QHD" : screen;
+        const head = document.getElementsByTagName('head')[0];
+        const style = document.createElement('link');
+
+        if (screen == "Phone") {
+            window.location.assign('m-index.php');
+        } else if (screen == "FHD") {
+            style.href = "CSS/FHD.css";
+        } else if (screen == "QHD") {
+            style.href = "CSS/QHD.css";
+        }
+
+        style.rel = "stylesheet";
+        style.type = "text/css";
+        head.appendChild(style);
+    </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="js/md5.js" defer="off"></script>
+    <script type="text/javascript" src="js/main.js" defer="off"></script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>NanoChat</h1>
+        <div id="block">
+            <h2>登录</h2>
+            <hr />
+            <span>用户名</span>
+            <input id="un" type="text" onkeydown="if (event.keyCode == 13) submit();" minlength="4" maxlength="16" />
+            <div id="untip"></div>
+            <span>&#160密&#160&#160码&#160</span>
+            <input id="pw" type="password" onkeydown="if (event.keyCode == 13) submit();" minlength="6" maxlength="16" />
+            <div id="pwtip"></div>
+            <button id="submit">登录</button>
+            <div id="smtip"></div>
+        </div>
+    </div>
+
+    <div style="display: inline-block; ">
+        <div id="nav">
+            <div class="nav_button"></div>
+            <div class="nav_button"></div>
+            <div class="nav_button"></div>
+            <div class="nav_button"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
