@@ -9,15 +9,17 @@
     <title>NanoChat</title>
     <script>
         let screen = "Phone";
-        screen = window.innerWidth >= 1080 ? "Desktop" : screen;
+        screen = window.innerWidth >= 1080 ? "FHD" : screen;
+        screen = window.innerWidth >= 1440 ? "QHD" : screen;
         const head = document.getElementsByTagName('head')[0];
         const style = document.createElement('link');
 
         if (screen == "Phone") {
             style.href = "/index/CSS/Phone.css";
-        } else if (screen == "Desktop") {
+        } else if (screen == "FHD") {
             window.location.assign('/index/index.php');
-            style.href = "/index/CSS/Desktop.css";
+        } else if (screen == "QHD") {
+            window.location.assign('/index/index.php');
         }
 
         style.rel = "stylesheet";
@@ -28,7 +30,6 @@
         // setTimeout(() => {
         //     document.getElementById("latest").scrollIntoView();
         // }, 1600);
-
     </script>
     <script type="text/javascript" src="/index/js/main.js"></script>
 </head>

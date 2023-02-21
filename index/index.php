@@ -9,15 +9,17 @@
     <title>NanoChat</title>
     <script>
         let screen = "Phone";
-        screen = window.innerWidth >= 1080 ? "Desktop" : screen;
+        screen = window.innerWidth >= 1080 ? "FHD" : screen;
+        screen = window.innerWidth >= 1440 ? "QHD" : screen;
         const head = document.getElementsByTagName('head')[0];
         const style = document.createElement('link');
 
         if (screen == "Phone") {
             window.location.assign('/index/m-index.php');
-            style.href = "/index/CSS/Phone.css";
-        } else if (screen == "Desktop") {
-            style.href = "/index/CSS/Desktop.css";
+        } else if (screen == "FHD") {
+            style.href = "/index/CSS/FHD.css";
+        } else if (screen == "QHD") {
+            style.href = "/index/CSS/QHD.css";
         }
 
         style.rel = "stylesheet";
@@ -28,7 +30,6 @@
         setTimeout(() => {
             document.getElementById("latest").scrollIntoView();
         }, 1600);
-
     </script>
     <script type="text/javascript" src="/index/js/main.js"></script>
 </head>
@@ -49,14 +50,14 @@
         <h1>NanoChat</h1>
         <div id="content">
             <div id="chat_list">
-                <div class="chat" onclick="open_chat('65536');">
+                <div class="chat" onclick="open_chat('65536', 1);">
                     <image src="/src/Colarm.png" class="chat_head_photo"></image>
                     <div class="chat_abstract">
                         <div class="chat_name">冷暖交响</div>
                         <div class="last_message">冷暖交响: 确实</div>
                     </div>
                 </div>
-                <div class="chat" onclick="open_chat('65537');">
+                <div class="chat" onclick="open_chat('65537', 1);">
                     <image src="/src/myHeadPhoto.jpg" class="chat_head_photo"></image>
                     <div class="chat_abstract">
                         <div class="chat_name">示例群聊</div>
@@ -193,15 +194,16 @@
                             </div>
                         </div>
 
-                        <script>document.get</script>
+                        <script>
+                            document.get
+                        </script>
 
                     </div>
 
                 </div>
 
                 <div id="input_bar">
-                    <textarea type="text" id="input_main"
-                        onkeydown="enter();"></textarea>
+                    <textarea type="text" id="input_main" onkeydown="enter();"></textarea>
                     <button id="send" onclick="send();">发送</button>
                 </div>
 

@@ -1,7 +1,7 @@
 
-function open_chat(chatID) {
+function open_chat(chatID, code) {
     // 请求服务器打开该聊天
-    window.location.assign('/index/m-chat.html');
+    if (code == 2) window.location.assign('/index/m-chat.html');
 }
 
 function enter() {
