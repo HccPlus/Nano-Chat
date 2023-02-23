@@ -32,7 +32,6 @@ function add_read_age()
 
     // 返回阅读量数据
     return $ReadAge;
-
 }
 
 // 检查数据库中是否包含该cookie，若包含则将对应的UserName返回
@@ -52,7 +51,6 @@ function check_cookie($cookie)
     $UserName = null;
     if ($obj) $UserName = $obj->USERNAME;
     return $UserName;
-
 }
 
 // 设置cookie，若UserName不为空则将新cookie写入数据库
@@ -62,7 +60,8 @@ function set_cookie($UserName, $ReadAge)
     // 设置cookie
     $seed = uniqid($ReadAge, true);
     $cookie = md5($seed);
-    setcookie("user", $cookie, time() + 30 * 24 * 3600, "/");
+    setcookie("user", $cookie, time() + 30 * 24 * 3600);
+    echo "new cookie: " . $cookie . "<br />";
 
     // 若UserName不为空则将新cookie写入数据库
     if ($UserName != null) {
@@ -75,7 +74,6 @@ function set_cookie($UserName, $ReadAge)
     }
 
     return null;
-    
 }
 
 ?>

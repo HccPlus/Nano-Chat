@@ -47,3 +47,25 @@ function send() {
     document.getElementById("latest").scrollIntoView();
 
 }
+
+function Login() {
+    window.location.assign("/login/Login.php");
+}
+
+function Logout() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/index/PHP/Logout.php", true);
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            let logoutStatus = parseInt(xhttp.responseText);
+            if (logoutStatus == 0) {
+                alert("已退出登录");
+                setTimeout('window.location.assign("/")', 1000);
+            } else {
+                alert(xhttp.responseText);
+            }
+        }
+    }
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}

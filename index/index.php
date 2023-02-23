@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
 <?php
 
 $LogInStatus = false;
@@ -12,7 +14,7 @@ $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
 set_cookie($UserName, $ReadAge);
 
-if ($LogInStatus) {
+if ($UserName) {
     echo "已登录";
 } else {
     echo "未登录";
@@ -51,11 +53,15 @@ if ($LogInStatus) {
             document.getElementById("latest").scrollIntoView();
         }, 1600);
     </script>
-    
+
     <script src="js/main.js"></script>
 </head>
 
 <body>
+    <div>
+        <button onclick="Logout();">退出登录</button>
+    </div>
+
     <div id="container">
         <h1>NanoChat</h1>
         <div id="content">
@@ -204,10 +210,6 @@ if ($LogInStatus) {
                             </div>
                         </div>
 
-                        <script>
-                            document.get
-                        </script>
-
                     </div>
 
                 </div>
@@ -223,7 +225,9 @@ if ($LogInStatus) {
 
     <div style="display: inline-block; ">
         <div id="nav">
-            <div class="nav_button"></div>
+            <div class="nav_button">
+                <img src="/src/Login.svg" class="icon" alt="登录" onclick="Login();" />
+            </div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>

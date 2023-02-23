@@ -250,7 +250,7 @@ h2 {
 #input_main {
     width: 82%;
     height: 64%;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: #ffffff40;
     margin: auto;
     border: 0.1em solid;
@@ -310,15 +310,20 @@ h2 {
 .nav_button {
     width: 3.2em;
     height: 3.2em;
-    background-color: #404040;
+    background-color: #ffffff;
     margin: 0.4em 0;
-    border: 0.1em solid #ffffff00;
+    border: 0.2em solid #ffffff00;
     border-radius: 0.4em;
     transition-property: background-color, border;
     transition-duration: 0.5s, 0.5s;
 }
 
 .nav_button:hover {
-    background-color: #202020;
-    border: 0.1em solid #579bb1;
+    background-color: #f0f0f0;
+    border: 0.2em solid #579bb1;
+}
+
+.icon {
+    width: 3.2em;
+    height: 3.2em;
 }

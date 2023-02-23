@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
 <?php
 
 $LogInStatus = false;
@@ -7,13 +9,20 @@ $UserName = null;
 $cookie = $_COOKIE["user"];
 
 include "PHP/main.php";
-$ReadAge = add_read_age();
 $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
-set_cookie($UserName, $ReadAge);
 
-if ($LogInStatus) {
-    echo "已登录";
+if ($UserName) {
+    echo $UserName;
+    echo <<<JS
+    <script>
+    $(document).ready(function () {
+        $("#smtip").css("color", "#404040");
+        document.getElementById("smtip").innerHTML = "您已登录！";
+        setTimeout('window.location.assign("/")', 1000);
+    });
+    </script>
+    JS;
 } else {
     echo "未登录";
 }
@@ -46,7 +55,6 @@ if ($LogInStatus) {
         style.type = "text/css";
         head.appendChild(style);
     </script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script src="js/md5.js" defer="off"></script>
     <script type="text/javascript" src="js/main.js" defer="off"></script>
 </head>
@@ -63,14 +71,16 @@ if ($LogInStatus) {
             <span>&#160密&#160&#160码&#160</span>
             <input id="pw" type="password" onkeydown="if (event.keyCode == 13) submit();" minlength="6" maxlength="16" />
             <div id="pwtip"></div>
-            <button id="submit">登录</button>
+            <button id="submit" onclick="submit();">登录</button>
             <div id="smtip"></div>
         </div>
     </div>
 
     <div style="display: inline-block; ">
         <div id="nav">
-            <div class="nav_button"></div>
+            <div class="nav_button">
+                <img src="/src/index.svg" class="icon" alt="回到主页" onclick="window.location.assign('/index/index.php');" />
+            </div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>
