@@ -49,7 +49,7 @@ function send() {
 }
 
 function Login() {
-    window.location.assign("/login/Login.php");
+    window.location.assign("/login/login.php");
 }
 
 function Logout() {

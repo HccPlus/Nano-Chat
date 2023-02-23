@@ -8,8 +8,8 @@ $cookie = $_COOKIE["user"];
 $RealPassword = "";
 
 // 验证用户名和密码
-if (!preg_match("/^[0-9a-z\u4e00-\u9fa5]{4,16}$/i", $UserName)) {
-    echo "User name is Wrong! ";
+if (!preg_match("/^[0-9a-z\x{4e00}-\x{9fa5}]{4,16}$/iu", $UserName)) {
+    echo "User name is Wrong! " . $UserName;
 }
 if (!preg_match("/^[0-9a-f]{32}$/", $Password)) {
     echo "Password is Wrong! ";
