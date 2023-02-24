@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="/src/jquery-3.6.3.min.js"></script>
 
 <?php
 
@@ -13,12 +13,6 @@ $ReadAge = add_read_age();
 $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
 set_cookie($UserName, $ReadAge);
-
-if ($UserName) {
-    echo "已登录";
-} else {
-    echo "未登录";
-}
 
 ?>
 
@@ -49,20 +43,39 @@ if ($UserName) {
         head.appendChild(style);
 
         // document.onclick = document.getElementById("loading").classList.remove("_loading");
-        setTimeout(() => {
+        $(document).ready(function() {
             document.getElementById("latest").scrollIntoView();
-        }, 1600);
+        });
+        // document.addEventListener("DOMContentLoaded", function(event) {
+        //     console.log("DOM fully loaded and parsed");
+        // });
     </script>
 
     <script src="js/main.js"></script>
 </head>
 
 <body>
-    <div>
-        <button onclick="Logout();">退出登录</button>
-    </div>
-
     <div id="container">
+        <?php
+        // 登录或未登录时显示的内容
+        if ($LogInStatus) {
+            echo <<<HTML
+            <div id="head_board">
+                <img id="account_head_photo" src="/src/Colarm.png" alt="{$UserName}" />
+                <div id="user_name">{$UserName}</div>
+                <button id="logout" onclick="Logout();">退出登录</button>
+            </div>
+            HTML;
+        } else {
+            echo <<<HTML
+            <div id="head_board">
+                <div id="account_head_photo"></div>
+                <div id="login" onclick="Login();">登录</div>
+                <div id="signup" onclick="Signup();">注册</div>
+            </div>
+            HTML;
+        }
+        ?>
         <h1>NanoChat</h1>
         <div id="content">
             <div id="chat_list">

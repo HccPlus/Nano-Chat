@@ -32,7 +32,7 @@ if ($UserName) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="" />
-    <title>登录</title>
+    <title>注册</title>
     <script>
         let screen = "Phone";
         screen = window.innerWidth >= 1080 ? "FHD" : screen;
@@ -60,15 +60,15 @@ if ($UserName) {
     <div id="container">
         <h1>NanoChat</h1>
         <div id="block">
-            <h2>登录</h2>
+            <h2>注册</h2>
             <hr />
             <span>用户名</span>
-            <input id="un" type="text" onkeydown="if (event.keyCode == 13) submit();" minlength="4" maxlength="16" />
+            <input id="un" type="text" onkeydown="if (event.keyCode == 13) add_user();" minlength="4" maxlength="16" />
             <div id="untip"></div>
             <span>&#160密&#160&#160码&#160</span>
-            <input id="pw" type="password" onkeydown="if (event.keyCode == 13) submit();" minlength="6" maxlength="16" />
+            <input id="pw" type="password" onkeydown="if (event.keyCode == 13) add_user();" minlength="6" maxlength="16" />
             <div id="pwtip"></div>
-            <button id="submit" onclick="submit();">登录</button>
+            <button id="submit" onclick="add_user();">注册</button>
             <div id="smtip"></div>
         </div>
     </div>

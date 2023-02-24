@@ -45,6 +45,96 @@ h2 {
     filter: drop-shadow(1em 1em 1.2em #c0c0c0e0);
 }
 
+#head_board {
+    display: flex;
+    justify-content: left;
+}
+
+#account_head_photo {
+    position: absolute;
+    width: 3.2em;
+    height: 3.2em;
+    background-color: #c0c0c0;
+    margin: 0.4em;
+    border: 0.1em solid #f0f0f0c0;
+    border-radius: 2em;
+    z-index: 2;
+}
+
+#user_name {
+    position: absolute;
+    background-color: #e0e0e0;
+    color: #404040;
+    margin: 1.2em;
+    margin-left: 4.8em;
+    border: 0.1em solid #ffffff;
+    border-radius: 0.4em;
+    padding: 0.2em 0.4em;
+    z-index: 2;
+    user-select: none;
+}
+
+#login {
+    position: absolute;
+    background-color: #e0e0e0;
+    color: #202020;
+    margin: 1.2em;
+    margin-left: 4.8em;
+    border: 0.1em solid #579bb1;
+    border-radius: 0.4em;
+    padding: 0.2em 0.4em;
+    z-index: 2;
+    user-select: none;
+    transition-property: background-color, color;
+    transition-duration: 0.5s, 0.5s;
+}
+
+#login:hover {
+    background-color: #579bb1;
+    color: #ffffff;
+}
+
+#signup {
+    position: absolute;
+    background-color: #e0e0e0;
+    color: #202020;
+    margin: 1.2em;
+    margin-left: 8.8em;
+    border: 0.1em solid #579bb1;
+    border-radius: 0.4em;
+    padding: 0.2em 0.4em;
+    z-index: 2;
+    user-select: none;
+    transition-property: background-color, color;
+    transition-duration: 0.5s, 0.5s;
+}
+
+#signup:hover {
+    background-color: #579bb1;
+    color: #ffffff;
+}
+
+#logout {
+    position: absolute;
+    right: 1em;
+    width: 3.2em;
+    height: 3.2em;
+    background-color: #f0f0f0;
+    color: #404040;
+    margin: 1em;
+    margin-left: 12em;
+    border: 0.1em solid #579bb1;
+    border-radius: 0.4em;
+    z-index: 2;
+    transition-property: background-color, color;
+    transition-duration: 0.5s, 0.5s;
+}
+
+#logout:hover {
+    background-color: #579bb1;
+    color: #ffffff;
+}
+
 #content {
     display: flex;
     width: 100%;

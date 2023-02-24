@@ -9,10 +9,14 @@ $RealPassword = "";
 
 // 验证用户名和密码
 if (!preg_match("/^[0-9a-z\x{4e00}-\x{9fa5}]{4,16}$/iu", $UserName)) {
-    echo "User name is Wrong! " . $UserName;
+    die("用户名不合法！");
 }
 if (!preg_match("/^[0-9a-f]{32}$/", $Password)) {
-    echo "Password is Wrong! ";
+    die("密码不合法！");
+}
+// 验证cookie
+if (!preg_match("/^[0-9a-f]{32}$/", $cookie)) {
+    die("cookie不合法！");
 }
 
 // 在数据库中查找用户名对应的密码
@@ -35,11 +39,6 @@ if ($obj == null) {
     echo 2; // 密码错误
 } else {
     echo 0; // 密码匹配，登录成功
-
-    // 验证cookie
-    if (!preg_match("/^[0-9a-f]{32}$/", $cookie)) {
-        die("cookie error! ");
-    }
 
     // 将cookie写入数据库
     $con = connect_SQL("MAIN");

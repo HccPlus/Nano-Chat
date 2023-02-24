@@ -32,7 +32,7 @@ hr {
 }
 
 #container {
-    background-color: #ffffff80;
+    background-color: #ffffff40;
     width: 48em;
     height: 32em;
     text-align: center;
@@ -48,15 +48,16 @@ hr {
 
 #container:hover {
     background-color: #ffffffa0;
-    filter: drop-shadow(1em 1em 1.2em #c0c0c0e0);
+    filter: drop-shadow(1em 1em 1.2em #c0c0c080);
 }
 
 #block {
     width: 80%;
     height: 64%;
-    background-color: #ffffff80;
+    background-color: #ffffff20;
     margin: 2em auto;
-    border: 0.2em solid #579bb1;
+    border: 0.1em solid;
+    border-color: #ffffff #e0e0e0 #e0e0e0 #ffffff;
     border-radius: 2em;
     padding: 1em 0;
 }

@@ -30,13 +30,48 @@ function submit() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             let loginStatus = parseInt(xhttp.responseText);
             if (loginStatus == 0) {
+                $("#smtip").css("color", "#404040");
                 document.getElementById("smtip").innerHTML = "登录成功！";
                 setTimeout('window.location.assign("/")', 1000);
             } else if (loginStatus == 1) {
+                $("#smtip").css("color", "#e00000");
                 document.getElementById("smtip").innerHTML = "用户名不存在！";
             } else if (loginStatus == 2) {
+                $("#smtip").css("color", "#e00000");
                 document.getElementById("smtip").innerHTML = "用户名或密码错误！";
             } else {
+                $("#smtip").css("color", "#e00000");
+                document.getElementById("smtip").innerHTML = xhttp.responseText;
+            }
+        }
+    }
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    let value = "userName=" + userName + "&password=" + password;
+    xhttp.send(value);
+}
+
+function add_user() {
+    let userName = document.getElementById("un").value;
+    let password = document.getElementById("pw").value;
+    if (check(userName, password) != true) {
+        return;
+    }
+    password = md5(password);
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "PHP/Adduser.php", true);
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            let loginStatus = parseInt(xhttp.responseText);
+            if (loginStatus == 0) {
+                $("#smtip").css("color", "#404040");
+                document.getElementById("smtip").innerHTML = "注册成功！";
+                setTimeout('window.location.assign("/")', 1000);
+            } else if (loginStatus == 1) {
+                $("#smtip").css("color", "#e00000");
+                document.getElementById("smtip").innerHTML = "用户名已存在！";
+            } else {
+                $("#smtip").css("color", "#e00000");
                 document.getElementById("smtip").innerHTML = xhttp.responseText;
             }
         }

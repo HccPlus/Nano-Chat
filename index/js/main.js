@@ -52,6 +52,10 @@ function Login() {
     window.location.assign("/login/login.php");
 }
 
+function Signup() {
+    window.location.assign("/login/signup.php");
+}
+
 function Logout() {
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/index/PHP/Logout.php", true);
