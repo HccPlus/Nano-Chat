@@ -35,14 +35,14 @@
     </div>
 
     <div id="chat_list">
-        <div class="chat" onclick="open_chat('65536', 2);">
+        <div class="chat" onclick="open_chat('65536', 0);">
             <image src="/src/Colarm.png" class="chat_head_photo"></image>
             <div class="chat_abstract">
                 <div class="chat_name">冷暖交响</div>
                 <div class="last_message">冷暖交响: 确实啊确实主要是刘云凡真的没有__但是刘云凡还是不如王子帆赞</div>
             </div>
         </div>
-        <div class="chat" onclick="open_chat('65537', 2);">
+        <div class="chat" onclick="open_chat('65537', 0);">
             <image src="/src/myHeadPhoto.jpg" class="chat_head_photo"></image>
             <div class="chat_abstract">
                 <div class="chat_name">示例群聊</div>

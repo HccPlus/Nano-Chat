@@ -1,7 +1,20 @@
 
-function open_chat(chatID, code) {
-    // 请求服务器打开该聊天
-    if (code == 2) window.location.assign('/index/m-chat.html');
+// 请求服务器打开该聊天
+function open_chat(chatID, title, code) {
+
+    // 若为移动端则跳转页面
+    if (code == 0) window.location.assign('/index/m-chat.html');
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/index/PHP/Message.php", true);
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("message_board").innerHTML = xhttp.responseText;
+        }
+    }
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    let value = "chatID=" + chatID + "&title=" + title + "&code=" + code;
+    xhttp.send(value);
 }
 
 function enter() {

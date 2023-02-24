@@ -10,7 +10,7 @@ $cookie = $_COOKIE["user"];
 
 include "PHP/main.php";
 $ReadAge = add_read_age();
-$UserName = check_cookie($cookie);
+if ($cookie) $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
 set_cookie($UserName, $ReadAge);
 
@@ -78,25 +78,17 @@ set_cookie($UserName, $ReadAge);
         ?>
         <h1>NanoChat</h1>
         <div id="content">
+
+            <!--  消息列表  -->
             <div id="chat_list">
-                <div class="chat" onclick="open_chat('65536', 1);">
-                    <image src="/src/Colarm.png" class="chat_head_photo"></image>
-                    <div class="chat_abstract">
-                        <div class="chat_name">冷暖交响</div>
-                        <div class="last_message">冷暖交响: 确实</div>
-                    </div>
-                </div>
-                <div class="chat" onclick="open_chat('65537', 1);">
-                    <image src="/src/myHeadPhoto.jpg" class="chat_head_photo"></image>
-                    <div class="chat_abstract">
-                        <div class="chat_name">示例群聊</div>
-                        <div class="last_message">Voyage: 值了</div>
-                    </div>
-                </div>
+                <?php
+                if ($LogInStatus) echo_chat_list($UserName);
+                ?>
             </div>
 
             <div id="chat_board">
 
+                <!--  聊天面板  -->
                 <div id="message_board">
 
                     <div id="chat_title">
