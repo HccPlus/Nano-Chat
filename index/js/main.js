@@ -5,11 +5,13 @@ function open_chat(chatID, title, code) {
     // 若为移动端则跳转页面
     if (code == 0) window.location.assign('/index/m-chat.html');
 
+    // 发送请求并在消息面板显示返回的HTML
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/index/PHP/Message.php", true);
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("message_board").innerHTML = xhttp.responseText;
+            document.getElementById("latest").scrollIntoView();
         }
     }
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

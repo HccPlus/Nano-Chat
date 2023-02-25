@@ -202,7 +202,11 @@ h2 {
 .last_message {
     font-size: 0.8em;
     color: #606060;
+    width: 16em;
     margin: 0.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     user-select: none;
 }
 
@@ -237,7 +241,6 @@ h2 {
 }
 
 #message_pad {
-    display: grid;
     width: 98%;
     height: 86%;
     margin: 0.5em auto;

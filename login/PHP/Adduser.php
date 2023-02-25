@@ -33,6 +33,13 @@ if ($obj != null) {
     $sql = "INSERT INTO `LOGINDATA` VALUES ('{$UserName}', '{$Password}', '{$cookie}', NOW());";
     mysqli_query($con, $sql);
     mysqli_close($con);
+
+    $con = connect_SQL("USERS");
+    $sql = "CREATE TABLE `CONT-$UserName` (`CONTACTS` VARCHAR(16), `CHATID` VARCHAR(16));";
+    mysqli_query($con, $sql);
+    $sql = "CREATE TABLE `GROUPS-$UserName` (`CHATID` VARCHAR(16));";
+    mysqli_query($con, $sql);
+    mysqli_close($con);
     echo 0;
 }
 

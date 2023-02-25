@@ -61,7 +61,7 @@ set_cookie($UserName, $ReadAge);
         if ($LogInStatus) {
             echo <<<HTML
             <div id="head_board">
-                <img id="account_head_photo" src="/src/Colarm.png" alt="{$UserName}" />
+                <img id="account_head_photo" src="/src/myHeadPhoto.jpg" alt="{$UserName}" />
                 <div id="user_name">{$UserName}</div>
                 <button id="logout" onclick="Logout();">退出登录</button>
             </div>
@@ -89,135 +89,7 @@ set_cookie($UserName, $ReadAge);
             <div id="chat_board">
 
                 <!--  聊天面板  -->
-                <div id="message_board">
-
-                    <div id="chat_title">
-                        <h2>示例群聊(3)</h2>
-                    </div>
-
-                    <div id="message_pad">
-
-                        <div class="message_row_tip">
-                            <div class="message_tip">12:53</div>
-                        </div>
-
-                        <div class="message_row">
-                            <div class="message_bar">
-                                <div class="head_photo"></div>
-                                <div class="message_box">
-                                    <div class="name">Loc</div>
-                                    <div class="message">示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message_row_me">
-                            <div class="message_bar">
-                                <div class="message_box">
-                                    <div class="name_box">
-                                        <div class="name">Voyage</div>
-                                    </div>
-                                    <div class="message_me">我说停停</div>
-                                </div>
-                                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-                            </div>
-                        </div>
-
-                        <div class="message_row">
-                            <div class="message_bar">
-                                <div class="head_photo"></div>
-                                <div class="message_box">
-                                    <div class="name">Loc</div>
-                                    <div class="message">绷不住了</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message_row">
-                            <div class="message_bar">
-                                <div class="head_photo"></div>
-                                <div class="message_box">
-                                    <div class="name">Loc</div>
-                                    <div class="message">确实</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message_row_me">
-                            <div class="message_bar">
-                                <div class="message_box">
-                                    <div class="name_box">
-                                        <div class="name">Voyage</div>
-                                    </div>
-                                    <div class="message_me">
-                                        但是如果袋鼠入侵乌拉圭每个乌拉圭人就要对战14只袋鼠，但你不关心乌拉圭人因为如果乌拉圭人入侵梵蒂冈每个梵蒂冈人都要向联合国提出抗议但是如果火星人入侵澳大利亚每个澳大利亚人的生活都不会有什么改变因为火星上面没有人
-                                    </div>
-                                </div>
-                                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-                            </div>
-                        </div>
-
-                        <div class="message_row">
-                            <div class="message_bar">
-                                <div class="head_photo"></div>
-                                <div class="message_box">
-                                    <div class="name">Loc</div>
-                                    <div class="message">难绷</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message_row">
-                            <div class="message_bar">
-                                <div class="head_photo"></div>
-                                <div class="message_box">
-                                    <div class="name">Loc</div>
-                                    <div class="message">你是故意的还是不小心</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message_row_me">
-                            <div class="message_bar">
-                                <div class="message_box">
-                                    <div class="name_box">
-                                        <div class="name">Voyage</div>
-                                    </div>
-                                    <div class="message_me">我是故意不小心的</div>
-                                </div>
-                                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-                            </div>
-                        </div>
-
-                        <div class="message_row">
-                            <div class="message_bar">
-                                <div class="head_photo"></div>
-                                <div class="message_box">
-                                    <div class="name">Loc</div>
-                                    <div class="message">一计害三贤是吧</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message_row_tip">
-                            <div class="message_tip">14:32</div>
-                        </div>
-
-                        <div id="latest" class="message_row_me">
-                            <div class="message_bar">
-                                <div class="message_box">
-                                    <div class="name_box">
-                                        <div class="name">Voyage</div>
-                                    </div>
-                                    <div class="message_me">值了</div>
-                                </div>
-                                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
+                <div id="message_board"></div>
 
                 <div id="input_bar">
                     <textarea type="text" id="input_main" onkeydown="enter();"></textarea>
