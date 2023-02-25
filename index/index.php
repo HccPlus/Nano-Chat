@@ -43,12 +43,6 @@ set_cookie($UserName, $ReadAge);
         head.appendChild(style);
 
         // document.onclick = document.getElementById("loading").classList.remove("_loading");
-        $(document).ready(function() {
-            document.getElementById("latest").scrollIntoView();
-        });
-        // document.addEventListener("DOMContentLoaded", function(event) {
-        //     console.log("DOM fully loaded and parsed");
-        // });
     </script>
 
     <script src="js/main.js"></script>

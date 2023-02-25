@@ -1,4 +1,7 @@
 
+var num = 0; // 记录发送消息的条数
+var currentChatID = null; // 记录当前所在的聊天ID
+
 // 请求服务器打开该聊天
 function open_chat(chatID, title, code) {
 
@@ -12,11 +15,35 @@ function open_chat(chatID, title, code) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("message_board").innerHTML = xhttp.responseText;
             document.getElementById("latest").scrollIntoView();
+            currentChatID = chatID;
         }
     }
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let value = "chatID=" + chatID + "&title=" + title + "&code=" + code;
     xhttp.send(value);
+
+    setInterval(function () {
+
+        // 发送请求并在消息面板显示返回的HTML
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/index/PHP/Message.php", true);
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                // document.getElementById("message_board").innerHTML = xhttp.responseText;
+                let currentScroll = $("#message_pad").scrollTop();
+                $("#message_board").html(xhttp.responseText);
+                $("#message_pad").css("scroll-behavior", "auto");
+                $("#message_pad").scrollTop(currentScroll);
+                $("#message_pad").css("scroll-behavior", "smooth");
+            }
+        }
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        let value = "chatID=" + chatID + "&title=" + title + "&code=" + code;
+        xhttp.send(value);
+
+    }, 4000);
+
+
 }
 
 function enter() {
@@ -34,6 +61,8 @@ function enter() {
 
 function send() {
 
+    let thisNum = num++; // 这条消息的序号
+
     // 获取消息并将换行符转换为<br />
     let newMessage = document.getElementById("input_main").value;
     document.getElementById("input_main").value = "";
@@ -43,7 +72,7 @@ function send() {
     // 若消息为空则退出
     if (!newMessage) {
         alert("不能发送空消息！");
-        return;
+        return 1;
     }
 
     // 新建row并插入HTML
@@ -55,12 +84,31 @@ function send() {
 
     // 给新row添加元素
     userName = "Voyage";
-    let content = '<div class="message_bar"><div class="message_box"><div class="name_box"><div class="name">' + userName + '</div></div><div class="message_me">' + newMessage + '</div></div><image src="/src/myHeadPhoto.jpg" class="head_photo"></image></div>'
+    let content = '<div class="message_bar"><div id="send_message_' + thisNum + '" class="sending">发送中</div><div class="message_box"><div class="name_box"><div class="name">' + userName + '</div></div><div class="message_me">' + newMessage + '</div></div><image src="/src/myHeadPhoto.jpg" class="head_photo"></image></div>'
     document.getElementById("latest").innerHTML = content;
 
     // 页面滑动至最新消息
     document.getElementById("latest").scrollIntoView();
 
+    // 发送POST请求
+    newMessage = newMessage.replace(/&/gm, "%26");
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/index/PHP/Send.php", true);
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            let sendStatus = parseInt(xhttp.responseText);
+            if (sendStatus == 0) {
+                document.getElementById("send_message_" + thisNum).innerHTML = "发送成功";
+                $("#send_message_" + thisNum).delay(1000).hide(0);
+            } else {
+                document.getElementById("send_message_" + thisNum).innerHTML = "发送失败";
+                console.log(xhttp.responseText);
+            }
+        }
+    }
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    value = "chatID=" + currentChatID + "&content=" + newMessage;
+    xhttp.send(value);
 }
 
 function Login() {

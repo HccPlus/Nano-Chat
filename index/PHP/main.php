@@ -104,6 +104,7 @@ function get_latest_message($ChatId)
         $time = $obj->TIME;
         $sender = $obj->SENDER;
         $content = $obj->CONTENT;
+        $content = preg_replace('/<br\s*\/>/', ' ', $content);
         if ($sender) return [$time, $sender, $content];
     }
     return [0, "系统提示", "本群尚未有人发言"];
@@ -125,6 +126,7 @@ function echo_chat_list($UserName)
             echo mysqli_error($con);
             break;
         }
+        if ($obj->STATUS == 1) continue; // 如果是未同意的好友申请则忽略，扫描下一个
         array_push($PrivateChatIds, [$obj->CHATID, $obj->CONTACTS]);
         $obj = null;
     }
@@ -141,6 +143,7 @@ function echo_chat_list($UserName)
             echo mysqli_error($con);
             break;
         }
+        if ($obj->STATUS == 1) continue; // 如果是未同意的进群邀请则忽略，扫描下一个
         array_push($GroupChatIds, $obj->CHATID);
         $obj = null;
     }
