@@ -107,11 +107,11 @@ function get_latest_message($ChatId)
         $content = preg_replace('/<br\s*\/>/', ' ', $content);
         if ($sender) return [$time, $sender, $content];
     }
-    return [0, "系统提示", "本群尚未有人发言"];
+    return [0, "系统提示", "暂时没有消息"];
 }
 
 // 搜索数据库并返回消息列表
-function echo_chat_list($UserName)
+function echo_chat_list($UserName, $Code)
 {
 
     // 获取私聊ID
@@ -155,12 +155,12 @@ function echo_chat_list($UserName)
     foreach ($PrivateChatIds as $id) {
         $title = $id[1];
         $message = get_latest_message($id[0]);
-        array_push($ChatList, [$id[0], $title, $message[0], $message[1], $message[2], 1]); // [5]为1表示该聊天为私聊
+        array_push($ChatList, [$id[0], $title, $message[0], $message[1], $message[2], $Code == 0 ? 1 : 3]); // [5]为1表示该聊天为私聊 (手机版为3)
     }
     foreach ($GroupChatIds as $id) {
         $title = get_chat_title($id);
         $message = get_latest_message($id);
-        array_push($ChatList, [$id, $title, $message[0], $message[1], $message[2], 2]); // [5]为2表示该聊天为群聊
+        array_push($ChatList, [$id, $title, $message[0], $message[1], $message[2], $Code == 0 ? 2 : 4]); // [5]为2表示该聊天为群聊 (手机版为4)
     }
     $time = array_column($ChatList, 2);
     array_multisort($time, SORT_DESC, $ChatList);
@@ -169,11 +169,12 @@ function echo_chat_list($UserName)
 }
 
 // 输出聊天信息
-function print_chat_list($ChatList) {
+function print_chat_list($ChatList)
+{
     foreach ($ChatList as $row) {
         echo <<<HTML
         <div class="chat" onclick="open_chat('$row[0]', '$row[1]', $row[5]);">
-            <image src="/src/Colarm.png" class="chat_head_photo"></image>
+            <img src="/src/Colarm.png" class="chat_head_photo" />
             <div class="chat_abstract">
                 <div class="chat_name">$row[1]</div>
                 <div class="last_message">$row[3]: $row[4]</div>

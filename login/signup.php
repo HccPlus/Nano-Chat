@@ -9,7 +9,7 @@ $UserName = null;
 $cookie = $_COOKIE["user"];
 
 include "PHP/main.php";
-$UserName = check_cookie($cookie);
+if ($cookie) $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
 
 if ($UserName) {
@@ -41,7 +41,7 @@ if ($UserName) {
         const style = document.createElement('link');
 
         if (screen == "Phone") {
-            window.location.assign('m-index.php');
+            window.location.assign('m-signup.php');
         } else if (screen == "FHD") {
             style.href = "CSS/FHD.css";
         } else if (screen == "QHD") {

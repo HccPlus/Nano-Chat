@@ -103,16 +103,16 @@ input {
     transition-duration: 0.5s, 0.5s;
 }
 
-#submit:hover {
-    background-color: #579bb1;
-    color: #ffffff;
-}
-
 #smtip {
     width: 41%;
     height: 1.6em;
     background-color: #ffffff00;
     margin: 0.2em auto 0.8em;
+}
+
+#submit:hover {
+    background-color: #579bb1;
+    color: #ffffff;
 }
 
 #nav {

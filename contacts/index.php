@@ -9,10 +9,8 @@ $UserName = null;
 $cookie = $_COOKIE["user"];
 
 include "PHP/main.php";
-$ReadAge = add_read_age();
 if ($cookie) $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
-set_cookie($UserName, $ReadAge);
 
 ?>
 
@@ -22,7 +20,7 @@ set_cookie($UserName, $ReadAge);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="" />
-    <title>NanoChat</title>
+    <title>联系人</title>
     <script>
         let screen = "Phone";
         screen = window.innerWidth >= 1080 ? "FHD" : screen;
@@ -31,52 +29,35 @@ set_cookie($UserName, $ReadAge);
         const style = document.createElement('link');
 
         if (screen == "Phone") {
-            style.href = "/index/CSS/Phone.css";
+            window.location.assign('m-index.php');
         } else if (screen == "FHD") {
-            window.location.assign('/index/index.php');
+            style.href = "CSS/FHD.css";
         } else if (screen == "QHD") {
-            window.location.assign('/index/index.php');
+            style.href = "CSS/QHD.css";
         }
 
         style.rel = "stylesheet";
         style.type = "text/css";
         head.appendChild(style);
     </script>
-    <script type="text/javascript" src="/index/js/main.js"></script>
+    <script src="js/md5.js" defer="off"></script>
+    <script type="text/javascript" src="js/main.js" defer="off"></script>
 </head>
 
 <body>
-
-    <div id="top">
-
-        <?php
-        // 登录或未登录时显示的内容
-        if ($LogInStatus) {
-            echo <<<HTML
-            <img id="account_head_photo" src="/src/myHeadPhoto.jpg" alt="{$UserName}" />
-            <h1>NanoChat</h1>
-            <button id="logout" onclick="Logout();">退出登录</button>
-            HTML;
-        } else {
-            echo <<<HTML
-            <button id="login" onclick="Login();">登录</button>
-            <button id="signup" onclick="Signup();">注册</button>
-            <h1>NanoChat</h1>
-            HTML;
-        }
-        ?>
-
-    </div>
-
-    <div id="chat_list">
-        <?php
-        if ($LogInStatus) echo_chat_list($UserName, 1);
-        ?>
+    <div id="container">
+        <h1>NanoChat</h1>
+        <div id="block">
+            <h2>联系人</h2>
+            <hr />
+        </div>
     </div>
 
     <div style="display: inline-block; ">
         <div id="nav">
-            <div class="nav_button"></div>
+            <div class="nav_button">
+                <img src="/src/index.svg" class="icon" alt="回到主页" onclick="window.location.assign('/index/index.php');" />
+            </div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>

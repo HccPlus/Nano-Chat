@@ -1,5 +1,24 @@
 <!DOCTYPE html>
 
+<script src="/src/jquery-3.6.3.min.js"></script>
+
+<?php
+
+$LogInStatus = false;
+$UserName = null;
+$cookie = $_COOKIE["user"];
+$ChatID = $_GET["chatID"];
+$Title = $_GET["title"];
+$Code = $_GET["code"];
+
+include "PHP/main.php";
+$ReadAge = add_read_age();
+if ($cookie) $UserName = check_cookie($cookie);
+if ($UserName) $LogInStatus = true;
+set_cookie($UserName, $ReadAge);
+
+?>
+
 <html lang="zh-cn">
 
 <head>
@@ -26,141 +45,55 @@
         style.type = "text/css";
         head.appendChild(style);
 
-        // document.onclick = document.getElementById("loading").classList.remove("_loading");
-        // setTimeout(() => {
-        //     document.getElementById("latest").scrollIntoView();
-        // }, 1600);
+
+        // 获取ChatID, title和Code
+        let chatID = "<?php echo $ChatID; ?>";
+        let title = "<?php echo $Title; ?>";
+        let code = <?php echo $Code; ?>;
+        // 发送请求并在消息面板显示返回的HTML
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/index/PHP/Message.php", true);
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("message_board").innerHTML = xhttp.responseText;
+                $("#message_pad").scrollTop($("#message_pad").prop("scrollHeight"));
+                currentChatID = chatID;
+            }
+        }
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        let value = "chatID=" + chatID + "&title=" + title + "&code=" + code;
+        xhttp.send(value);
+
+        interval = setInterval(function() {
+
+            // 发送请求并在消息面板显示返回的HTML
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "/index/PHP/Message.php", true);
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    // document.getElementById("message_board").innerHTML = xhttp.responseText;
+                    let currentScroll = $("#message_pad").scrollTop();
+                    $("#message_board").html(xhttp.responseText);
+                    $("#message_pad").css("scroll-behavior", "auto");
+                    $("#message_pad").scrollTop(currentScroll);
+                    $("#message_pad").css("scroll-behavior", "smooth");
+                }
+            }
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            let value = "chatID=" + chatID + "&title=" + title + "&code=" + code;
+            xhttp.send(value);
+
+        }, 4000);
     </script>
     <script type="text/javascript" src="/index/js/main.js"></script>
 </head>
 
 <body>
-    <div id="top">
-        <h1>示例群聊(3)</h1>
-    </div>
-    <div id="message_pad">
-        <div class="message_row_tip">
-            <div class="message_tip">12:53</div>
-        </div>
-
-        <div class="message_row">
-            <div class="message_bar">
-                <div class="head_photo"></div>
-                <div class="message_box">
-                    <div class="name">Loc</div>
-                    <div class="message">示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字示例文字</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="message_row_me">
-            <div class="message_bar">
-                <div class="message_box">
-                    <div class="name_box">
-                        <div class="name">Voyage</div>
-                    </div>
-                    <div class="message_me">我说停停</div>
-                </div>
-                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-            </div>
-        </div>
-
-        <div class="message_row">
-            <div class="message_bar">
-                <div class="head_photo"></div>
-                <div class="message_box">
-                    <div class="name">Loc</div>
-                    <div class="message">绷不住了</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="message_row">
-            <div class="message_bar">
-                <div class="head_photo"></div>
-                <div class="message_box">
-                    <div class="name">Loc</div>
-                    <div class="message">确实</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="message_row_me">
-            <div class="message_bar">
-                <div class="message_box">
-                    <div class="name_box">
-                        <div class="name">Voyage</div>
-                    </div>
-                    <div class="message_me">
-                        但是如果袋鼠入侵乌拉圭每个乌拉圭人就要对战14只袋鼠，但你不关心乌拉圭人因为如果乌拉圭人入侵梵蒂冈每个梵蒂冈人都要向联合国提出抗议但是如果火星人入侵澳大利亚每个澳大利亚人的生活都不会有什么改变因为火星上面没有人
-                    </div>
-                </div>
-                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-            </div>
-        </div>
-
-        <div class="message_row">
-            <div class="message_bar">
-                <div class="head_photo"></div>
-                <div class="message_box">
-                    <div class="name">Loc</div>
-                    <div class="message">难绷</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="message_row">
-            <div class="message_bar">
-                <div class="head_photo"></div>
-                <div class="message_box">
-                    <div class="name">Loc</div>
-                    <div class="message">你是故意的还是不小心</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="message_row_me">
-            <div class="message_bar">
-                <div class="message_box">
-                    <div class="name_box">
-                        <div class="name">Voyage</div>
-                    </div>
-                    <div class="message_me">我是故意不小心的</div>
-                </div>
-                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-            </div>
-        </div>
-
-        <div class="message_row">
-            <div class="message_bar">
-                <div class="head_photo"></div>
-                <div class="message_box">
-                    <div class="name">Loc</div>
-                    <div class="message">一计害三贤是吧</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="message_row_tip">
-            <div class="message_tip">14:32</div>
-        </div>
-
-        <div id="latest" class="message_row_me">
-            <div class="message_bar">
-                <div class="message_box">
-                    <div class="name_box">
-                        <div class="name">Voyage</div>
-                    </div>
-                    <div class="message_me">值了</div>
-                </div>
-                <image src="/src/myHeadPhoto.jpg" class="head_photo"></image>
-            </div>
-        </div>
-    </div>
+    <div id="message_board"></div>
 
     <div id="input_bar">
-        <input type="text" id="input_main" onkeydown="enter();"></input>
-        <button id="send" onclick="send();">发送</button>
+        <input type="text" id="input_main" onkeydown="enter('<?php echo $UserName; ?>');"></input>
+        <button id="send" onclick="send('<?php echo $UserName; ?>');">发送</button>
     </div>
 
     <div style="display: inline-block; ">

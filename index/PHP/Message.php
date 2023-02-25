@@ -15,7 +15,7 @@ $UserName = check_cookie($cookie);
 if (!$UserName) die("您没有权限！");
 
 // 群聊和私聊分类处理
-if ($Code == 2) {
+if ($Code == 2 || $Code == 4) {
 
     // 查询用户是否加入群聊
     $con = connect_SQL("USERS");
@@ -43,7 +43,7 @@ if ($Code == 2) {
     @mysqli_free_result($result);
     if ($obj) $number = '(' . $obj->NUM . ')';
     mysqli_close($con);
-} else if ($Code == 1) {
+} else if ($Code == 1 || $Code == 3) {
 
     // 查询用户是否拥有该好友
     $con = connect_SQL("USERS");
@@ -61,18 +61,31 @@ if ($Code == 2) {
     if (!$finded) {
         die("您没有权限！");
     }
+} else {
+    die("请求错误！");
 }
 
-// 返回标题
-echo <<<HTML
-<div id="chat_title">
-    <h2>$Title$number</h2>
-</div>
-\n
-HTML;
+// 电脑端和手机端分类返回标题
+if ($Code == 1 || $Code == 2) {
+    echo <<<HTML
+    <div id="chat_title">
+        <h2>$Title$number</h2>
+    </div>
+    \n
+    HTML;
+} else {
+    echo <<<HTML
+    <div id="top">
+        <button id="back" onclick="Back();">退出聊天</button>
+        <h2>$Title$number</h2>
+    </div>
+    \n
+    HTML;
+}
+
 
 // 将消息输出为HTML语言
-function echo_row($UserName, $Sender, $Content, $latest)
+function echo_row($UserName, $Sender, $Content)
 {
     // 如果是系统消息
     if ($Sender == "_SYSTEM") {
@@ -83,10 +96,10 @@ function echo_row($UserName, $Sender, $Content, $latest)
         HTML;
     }
 
-    // 判断是否为自己发送的消息
-    if ($Sender == $UserName) {
+    // 如果为自己发送的消息
+    else if ($Sender == $UserName) {
         echo <<<HTML
-        <div $latest class="message_row_me">
+        <div class="message_row_me">
             <div class="message_bar">
                 <div class="message_box">
                     <div class="name_box">
@@ -98,9 +111,12 @@ function echo_row($UserName, $Sender, $Content, $latest)
             </div>
         </div>
         HTML;
-    } else {
+    }
+
+    // 其他人发送的消息
+    else {
         echo <<<HTML
-        <div $latest class="message_row">
+        <div class="message_row">
             <div class="message_bar">
                 <image src="/src/Colarm.png" class="head_photo"></image>
                 <div class="message_box">
@@ -111,7 +127,6 @@ function echo_row($UserName, $Sender, $Content, $latest)
         </div>
         HTML;
     }
-
 }
 
 // 返回消息
@@ -122,30 +137,12 @@ $result = mysqli_query($con, $sql);
 echo '<div id="message_pad">';
 
 // 循环获取消息并返回
-@$obj = mysqli_fetch_object($result); // 获取一次消息
-$Sender = null; // 初始化缓存变量
-$Content = null;
-if ($obj) $Sender = $obj->SENDER; // 若$obj存在则更新缓存变量
-if ($obj) $Content = $obj->CONTENT;
-// 进入循环
-while (true) {
-    @$obj = mysqli_fetch_object($result); // 获取一次消息
-    // 若没有新消息
-    if (!$obj) {
-        // 若未获取过消息则输出系统提示并退出循环
-        if ($Content === null) {
-            echo_row($UserName, "_SYSTEM", "暂时没有消息", '');
-            break;
-        }
-        // 输出最后一条消息并退出循环
-        echo_row($UserName, $Sender, $Content, 'id="latest"');
-        break;
-    }
-    // 若有新消息则输出
-    echo_row($UserName, $Sender, $Content, '');
-    $Sender = $obj->SENDER; // 更新缓存
-    $Content = $obj->CONTENT;
+$isBlank = true;
+while (@$obj = mysqli_fetch_object($result)) {
+    $isBlank = false;
+    echo_row($UserName, $obj->SENDER, $obj->CONTENT);
 }
+if ($isBlank) echo_row($UserName, "_SYSTEM", "暂时没有消息");
 @mysqli_free_result($result);
 echo '</div>';
 

@@ -1,5 +1,7 @@
 body {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url("/src/bkg2.jpg");
     background-size: 120vw 120vh;
     background-attachment: fixed;
@@ -20,23 +22,23 @@ h1 {
 }
 
 h2 {
-    font-size: 1.4em;
+    font-size: 1.6em;
     color: #202020;
-    margin: 0 0 1em;
+    margin: 0;
 }
 
 hr {
-    margin: 0 0 6em;
+    margin: 0 0 2em;
 }
 
 #container {
     background-color: #ffffff40;
-    width: 64em;
-    height: 44em;
+    width: 48em;
+    height: 32em;
     text-align: center;
-    margin: 4em auto 2em;
-    border: 0.05em solid;
-    border-color: #ffffff #b0b0b0 #b0b0b0 #ffffff;
+    margin: 1.6em;
+    border: 0.1em solid;
+    border-color: #ffffff #e0e0e0 #e0e0e0 #ffffff;
     border-radius: 1.6em;
     filter: drop-shadow(1em 1em 1em #c0c0c0c0);
     backdrop-filter: blur(1em);
@@ -46,7 +48,7 @@ hr {
 
 #container:hover {
     background-color: #ffffffa0;
-    filter: drop-shadow(1em 1em 1.2em #c0c0c040);
+    filter: drop-shadow(1em 1em 1.2em #c0c0c080);
 }
 
 #block {
@@ -54,8 +56,8 @@ hr {
     height: 64%;
     background-color: #ffffff20;
     margin: 2em auto;
-    border: 0.05em solid;
-    border-color: #ffffff #b0b0b0 #b0b0b0 #ffffff;
+    border: 0.1em solid;
+    border-color: #ffffff #e0e0e0 #e0e0e0 #ffffff;
     border-radius: 2em;
     padding: 1em 0;
 }
@@ -103,11 +105,6 @@ input {
     transition-duration: 0.5s, 0.5s;
 }
 
-#submit:hover {
-    background-color: #579bb1;
-    color: #ffffff;
-}
-
 #smtip {
     width: 41%;
     height: 1.6em;
@@ -115,8 +112,13 @@ input {
     margin: 0.2em auto 0.8em;
 }
 
+#submit:hover {
+    background-color: #579bb1;
+    color: #ffffff;
+}
+
 #nav {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     min-width: 4em;
@@ -141,7 +143,7 @@ input {
     width: 3.2em;
     height: 3.2em;
     background-color: #ffffff;
-    margin: 0 0.4em;
+    margin: 0.4em 0;
     border: 0.2em solid #ffffff00;
     border-radius: 0.4em;
     transition-property: background-color, border;

@@ -32,7 +32,7 @@ if ($UserName) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="" />
-    <title>登录</title>
+    <title>注册</title>
     <script>
         let screen = "Phone";
         screen = window.innerWidth >= 1080 ? "FHD" : screen;
@@ -41,11 +41,11 @@ if ($UserName) {
         const style = document.createElement('link');
 
         if (screen == "Phone") {
-            window.location.assign('m-login.php');
+            style.href = "CSS/Phone.css";
         } else if (screen == "FHD") {
-            style.href = "CSS/FHD.css";
+            window.location.assign('signup.php');
         } else if (screen == "QHD") {
-            style.href = "CSS/QHD.css";
+            window.location.assign('signup.php');
         }
 
         style.rel = "stylesheet";
@@ -57,20 +57,20 @@ if ($UserName) {
 </head>
 
 <body>
-    <div id="container">
+    <div id="top">
         <h1>NanoChat</h1>
-        <div id="block">
-            <h2>登录</h2>
-            <hr />
-            <span>用户名</span>
-            <input id="un" type="text" onkeydown="if (event.keyCode == 13) submit();" minlength="4" maxlength="16" />
-            <div id="untip"></div>
-            <span>&#160密&#160&#160码&#160</span>
-            <input id="pw" type="password" onkeydown="if (event.keyCode == 13) submit();" minlength="6" maxlength="16" />
-            <div id="pwtip"></div>
-            <button id="submit" onclick="submit();">登录</button>
-            <div id="smtip"></div>
-        </div>
+    </div>
+    <div id="block">
+        <h2>注册</h2>
+        <hr />
+        <span>用户名</span>
+        <input id="un" type="text" onkeydown="if (event.keyCode == 13) add_user();" minlength="4" maxlength="16" />
+        <div id="untip"></div>
+        <span>&#160密&#160&#160码&#160</span>
+        <input id="pw" type="password" onkeydown="if (event.keyCode == 13) add_user();" minlength="6" maxlength="16" />
+        <div id="pwtip"></div>
+        <button id="submit" onclick="add_user();">注册</button>
+        <div id="smtip"></div>
     </div>
 
     <div style="display: inline-block; ">

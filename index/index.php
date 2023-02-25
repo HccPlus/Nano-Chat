@@ -76,7 +76,7 @@ set_cookie($UserName, $ReadAge);
             <!--  消息列表  -->
             <div id="chat_list">
                 <?php
-                if ($LogInStatus) echo_chat_list($UserName);
+                if ($LogInStatus) echo_chat_list($UserName, 0);
                 ?>
             </div>
 
@@ -86,8 +86,8 @@ set_cookie($UserName, $ReadAge);
                 <div id="message_board"></div>
 
                 <div id="input_bar">
-                    <textarea type="text" id="input_main" onkeydown="enter();"></textarea>
-                    <button id="send" onclick="send();">发送</button>
+                    <textarea type="text" id="input_main" onkeydown="enter('<?php echo $UserName; ?>');"></textarea>
+                    <button id="send" onclick="send('<?php echo $UserName; ?>');">发送</button>
                 </div>
 
             </div>
@@ -99,7 +99,9 @@ set_cookie($UserName, $ReadAge);
             <div class="nav_button">
                 <img src="/src/Login.svg" class="icon" alt="登录" onclick="Login();" />
             </div>
-            <div class="nav_button"></div>
+            <div class="nav_button">
+                <img src="/src/Login.svg" class="icon" alt="联系人" onclick="Contacts();" />
+            </div>
             <div class="nav_button"></div>
             <div class="nav_button"></div>
         </div>
