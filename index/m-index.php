@@ -73,7 +73,7 @@ set_cookie($UserName, $ReadAge);
     </div>
 
     <?php
-    if (!$LoginStatus) {
+    if (!$LogInStatus) {
         echo <<<HTML
         <button id="login" onclick="Login();">登录</button>
         <button id="signup" onclick="Signup();">注册</button>
