@@ -59,8 +59,6 @@ set_cookie($UserName, $ReadAge);
             HTML;
         } else {
             echo <<<HTML
-            <button id="login" onclick="Login();">登录</button>
-            <button id="signup" onclick="Signup();">注册</button>
             <h1>NanoChat</h1>
             HTML;
         }
@@ -73,6 +71,15 @@ set_cookie($UserName, $ReadAge);
         if ($LogInStatus) echo_chat_list($UserName, 1);
         ?>
     </div>
+
+    <?php
+    if (!$LoginStatus) {
+        echo <<<HTML
+        <button id="login" onclick="Login();">登录</button>
+        <button id="signup" onclick="Signup();">注册</button>
+        HTML;
+    }
+    ?>
 
     <div style="display: inline-block; ">
         <div id="nav">

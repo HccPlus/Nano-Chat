@@ -32,30 +32,26 @@ h1 {
 }
 
 #login {
-    position: absolute;
-    left: 0;
-    background-color: #f0f0f0;
-    font-size:1.1em;
+    display: block;
+    font-size: 2em;
+    background-color: #f0f0f0c0;
     color: #202020;
-    margin: 0 0.8em;
-    border: 0.1em solid #579bb1;
+    margin: 4em auto;
+    border: 0.2em solid #579bb1;
     border-radius: 2em;
-    padding: 0.2em 0.8em;
-    z-index: 2;
+    padding: 0.4em 1em;
     user-select: none;
 }
 
 #signup {
-    position: absolute;
-    left: 4.4em;
-    background-color: #f0f0f0;
-    font-size: 1.1em;
+    display: block;
+    font-size: 2em;
+    background-color: #f0f0f0c0;
     color: #202020;
-    margin: 0 0.8em;
-    border: 0.1em solid #579bb1;
+    margin: 4em auto;
+    border: 0.2em solid #579bb1;
     border-radius: 2em;
-        padding: 0.2em 0.8em;
-    z-index: 2;
+    padding: 0.4em 1em;
     user-select: none;
 }
 
