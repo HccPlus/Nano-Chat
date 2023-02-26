@@ -12,6 +12,19 @@ include "PHP/main.php";
 if ($cookie) $UserName = check_cookie($cookie);
 if ($UserName) $LogInStatus = true;
 
+
+// 用户搜索
+$SearchUN = null;
+$SearchUN = $_GET["un"];
+
+echo <<<JAVASCRIPT
+<script>
+    $(document).ready(function () {
+        if ($("#sc").val()) search();
+    });
+</script>
+JAVASCRIPT;
+
 ?>
 
 <html lang="zh-cn">
@@ -39,15 +52,57 @@ if ($UserName) $LogInStatus = true;
         style.rel = "stylesheet";
         style.type = "text/css";
         head.appendChild(style);
+
+
+        // 添加好友
+        let newContact = '<div id="new"><div><span>添加好友</span><input id="sc" type="text" onkeydown="if (event.keyCode == 13) search();" minlength="4" maxlength="16" /><div id="sctip"></div></div><button id="submit" onclick="search();">搜索</button></div>'
+
+        // 好友列表
+        let contactList = `<?php echo_contact_list($UserName); ?>`;
+
+        // 显示添加好友模块的函数
+        function show_new_contact() {
+            $("#contact_list").remove();
+            $("#new_contact").hide();
+            $("#view_contact").show();
+            $("#block").append(newContact);
+        }
+
+        // 显示好友列表的函数
+        function show_contact_list() {
+            $("#new").remove();
+            $("#ret").remove();
+            $("#add").remove();
+            $("#rttip").remove();
+            $("#view_contact").hide();
+            $("#new_contact").show();
+            $("#block").append(contactList);
+        }
+
+        // 文档加载完毕后执行
+        $(document).ready(function() {
+
+            // 默认显示好友列表
+            show_contact_list();
+
+            // 若有GET变量则显示添加好友
+            if (<?php echo $SearchUN != null ? "true" : "false"; ?>) {
+                show_new_contact();
+                $("#sc").val("<?php echo $SearchUN; ?>");
+                search();
+            }
+
+        })
     </script>
-    <script src="js/md5.js" defer="off"></script>
-    <script type="text/javascript" src="js/main.js" defer="off"></script>
+    <script src="js/main.js" defer="off"></script>
 </head>
 
 <body>
     <div id="container">
         <h1>NanoChat</h1>
         <div id="block">
+            <button id="new_contact" onclick='show_new_contact();'>添加好友</button>
+            <button id="view_contact" onclick='show_contact_list();'>查看好友列表</button>
             <h2>联系人</h2>
             <hr />
         </div>

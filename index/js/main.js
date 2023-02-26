@@ -42,6 +42,8 @@ function open_chat(chatID, title, code) {
                 $("#message_pad").scrollTop(currentScroll);
                 $("#message_pad").css("scroll-behavior", "smooth");
                 if (scroll) $("#message_pad").scrollTop($("#message_pad").prop("scrollHeight"));
+            } else if (xhttp.readyState == 4) {
+                $("#message_board").html("网络错误");
             }
         }
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -110,6 +112,8 @@ function send(userName) {
                 document.getElementById("send_message_" + thisNum).innerHTML = "发送失败";
                 console.log(xhttp.responseText);
             }
+        } else if (xhttp.readyState == 4) {
+            alert("网络错误");
         }
     }
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -137,6 +141,8 @@ function Logout() {
             } else {
                 alert(xhttp.responseText);
             }
+        } else if (xhttp.readyState == 4) {
+            alert("网络错误");
         }
     }
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

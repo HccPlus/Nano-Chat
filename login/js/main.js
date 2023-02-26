@@ -1,16 +1,14 @@
 
 function check(userName, password) {
-    let ret = true
+    let ret = true;
     if (userName.search(/^[0-9a-z\u4e00-\u9fa5]{4,16}$/i) != 0) {
         $("#untip").css("color", "#e00000");
         document.getElementById("untip").innerHTML = "用户名格式不正确！";
-        console.log("unError");
         ret = false;
     }
     if (password.search(/^[^\n]{6,16}$/) != 0) {
         $("#pwtip").css("color", "#e00000");
         document.getElementById("pwtip").innerHTML = "密码格式不正确！";
-        console.log("pwError");
         ret = false;
     }
     return ret;
@@ -43,6 +41,9 @@ function submit() {
                 $("#smtip").css("color", "#e00000");
                 document.getElementById("smtip").innerHTML = xhttp.responseText;
             }
+        } else if (xhttp.readyState == 4) {
+            $("#smtip").css("color", "#e00000");
+            $("#smtip").html("网络错误");
         }
     }
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -74,6 +75,9 @@ function add_user() {
                 $("#smtip").css("color", "#e00000");
                 document.getElementById("smtip").innerHTML = xhttp.responseText;
             }
+        } else if (xhttp.readyState == 4) {
+            $("#smtip").css("color", "#e00000");
+            $("#smtip").html("网络错误");
         }
     }
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

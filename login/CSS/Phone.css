@@ -70,6 +70,8 @@ input {
     height: 1.6em;
     background-color: #ffffff00;
     margin: 0.2em auto 0.8em;
+    white-space: nowrap;
+    user-select: none;
 }
 
 #pwtip {
@@ -78,6 +80,8 @@ input {
     height: 1.6em;
     background-color: #ffffff00;
     margin: 0.2em auto 0.8em;
+    white-space: nowrap;
+    user-select: none;
 }
 
 #submit {
@@ -97,6 +101,8 @@ input {
     height: 1.6em;
     background-color: #ffffff00;
     margin: 0.2em auto 0.8em;
+    white-space: nowrap;
+    user-select: none;
 }
 
 .icon {
