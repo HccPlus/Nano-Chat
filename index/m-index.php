@@ -43,6 +43,7 @@ set_cookie($UserName, $ReadAge);
         head.appendChild(style);
     </script>
     <script type="text/javascript" src="/index/js/main.js"></script>
+
 </head>
 
 <body>
@@ -69,25 +70,20 @@ set_cookie($UserName, $ReadAge);
     <div id="chat_list">
         <?php
         if ($LogInStatus) echo_chat_list($UserName, 1);
+        else {
+            echo <<<HTML
+            <button id="login" onclick="Login();">登录</button>
+            <button id="signup" onclick="Signup();">注册</button>
+            HTML;
+        }
         ?>
     </div>
 
-    <?php
-    if (!$LogInStatus) {
-        echo <<<HTML
-        <button id="login" onclick="Login();">登录</button>
-        <button id="signup" onclick="Signup();">注册</button>
-        HTML;
-    }
-    ?>
-
-    <div style="display: inline-block; ">
-        <div id="nav">
-            <div class="nav_button"></div>
-            <div class="nav_button"></div>
-            <div class="nav_button"></div>
-            <div class="nav_button"></div>
-        </div>
+    <div id="nav">
+        <div class="nav_button" onclick="Contacts();"></div>
+        <div class="nav_button"></div>
+        <div class="nav_button"></div>
+        <div class="nav_button"></div>
     </div>
 
 </body>

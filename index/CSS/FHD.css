@@ -196,8 +196,12 @@ h2 {
 }
 
 .chat_name {
+    width: 10em;
     font-size: 1em;
     margin: 0.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     user-select: none;
 }
 

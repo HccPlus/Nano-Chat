@@ -45,7 +45,7 @@ function search() {
                 $("#ret").remove();
                 $("#add").remove();
                 $("#rttip").remove();
-                $("#block").append('<div id="ret"><img class="head_photo" src="/src/Colarm.png" alt="头像" /><div class="name">' + name + '</div></div><button id="add" onclick="apply();">申请添加</button><div id="rttip"></div>');
+                $("#block").append('<div id="ret"><img class="head_photo" src="/src/Colarm.png" alt="头像" /><div class="name">' + name + '</div></div><button id="add" onclick="gotName=`' + name + '`;apply();">申请添加</button><div id="rttip"></div>');
                 gotName = name;
             } else if (searchStatus == 4) {
                 $("#sctip").css("color", "#e00000");
@@ -81,6 +81,9 @@ function apply() {
             } else if (applyStatus == 1) {
                 $("#rttip").css("color", "#e00000");
                 $("#rttip").html("已有申请信息，请勿重复提交。");
+            } else if (applyStatus == 2) {
+                $("#rttip").css("color", "#e00000");
+                $("#rttip").html("用户不存在！");
             } else {
                 $("#rttip").css("color", "#e00000");
                 $("#rttip").html(xhttp.responseText);
@@ -94,4 +97,22 @@ function apply() {
     let value = "name=" + gotName;
     xhttp.send(value);
 
+}
+
+function accept(dom) {
+
+    gotName = $(dom).parent().parent().children(".name").html();
+    apply();
+    setTimeout(function () {
+        window.location.assign(".");
+    }, 1000);
+
+}
+
+function deny() {
+    alert("抱歉，暂不支持拒绝好友申请");
+}
+
+function cancel() {
+    alert("抱歉，暂不支持取消好友申请");
 }

@@ -36,7 +36,7 @@ function echo_contact_list($UserName)
 
     // 连接数据库获取好友结果集
     $con = connect_SQL("USERS");
-    $sql = "SELECT * FROM `CONT-$UserName` WHERE 1;";
+    $sql = "SELECT * FROM `CONT-$UserName` WHERE 1 ORDER BY `STATUS` DESC;";
     $result = mysqli_query($con, $sql);
 
     echo '<div id="contact_list">';
@@ -45,20 +45,45 @@ function echo_contact_list($UserName)
     $isBlank = true;
     while (@$obj = mysqli_fetch_object($result)) {
 
-        // 如果是未通过的好友申请则忽略该条
-        if ($obj->STATUS != 0) {
-            continue;
+        $isBlank = false;
+
+        // 如果是自己向对方发出的好友申请
+        if ($obj->STATUS == 1) {
+            echo <<<HTML
+            <div class="contact_box">
+                <div class="contact_1"> \
+                    <img class="contact_head_photo" src="/src/Colarm.png" alt="头像" \> \
+                    <div class="name">$obj->CONTACTS</div> \
+                </div> \
+                <div class="cttip">对方还未通过你的好友申请</div> \
+            </div>
+            HTML;
+        }
+
+        // 如果是对方向自己发出的好友申请
+        else if ($obj->STATUS == 2) {
+            echo <<<HTML
+            <div class="contact_box">
+                <div class="contact_2"> \
+                    <img class="contact_head_photo" src="/src/Colarm.png" alt="头像" \> \
+                    <div class="name">$obj->CONTACTS</div> \
+                </div> \
+                <div class="cttip">对方已申请添加你为好友</div> \
+            </div>
+            HTML;
         }
 
         // 输出一条好友信息
-        $isBlank = false;
-        echo <<<HTML
-        <div class="contact"> \
-            <img class="contact_head_photo" src="/src/Colarm.png" alt="头像" \> \
-            <div class="name">$obj->CONTACTS</div> \
-        </div>
-        HTML;
-        
+        else if ($obj->STATUS == 0) {
+            echo <<<HTML
+            <div class="contact_box">
+                <div class="contact"> \
+                    <img class="contact_head_photo" src="/src/Colarm.png" alt="头像" \> \
+                    <div class="name">$obj->CONTACTS</div> \
+                </div> \
+            </div>
+            HTML;
+        }
     }
 
     @mysqli_free_result($result);
@@ -89,7 +114,7 @@ function create_contact($User1, $User2)
 
     // CHATID+1并写回数据库
     $ChatID = strval(intval($ChatID) + 1);
-    $sql = "UPDATE `READAGE` SET `READAGE` = {$ChatID} WHERE 1;";
+    $sql = "UPDATE `MAXCHATID` SET `MAXCHATID` = {$ChatID} WHERE 1;";
     mysqli_query($con, $sql);
     mysqli_close($con);
 
@@ -105,6 +130,7 @@ function create_contact($User1, $User2)
     mysqli_query($con, $sql);
     $sql = "UPDATE `CONT-$User2` SET `STATUS` = 0, `CHATID` = '$ChatID' WHERE `CONTACTS` = '$User1';";
     mysqli_query($con, $sql);
+    mysqli_close($con);
 }
 
 ?>

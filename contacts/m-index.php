@@ -2,7 +2,14 @@
 
 <script src="/src/jquery-3.6.3.min.js"></script>
 
+<script>
+    alert("抱歉，暂不支持手机查看联系人");
+    window.location.assign("/");
+</script>
+
 <?php
+
+die();
 
 $LogInStatus = false;
 $UserName = null;
@@ -42,11 +49,11 @@ JAVASCRIPT;
         const style = document.createElement('link');
 
         if (screen == "Phone") {
-            window.location.assign('m-index.php');
+            style.href = "CSS/Phone.css";
         } else if (screen == "FHD") {
-            style.href = "CSS/FHD.css";
+            window.location.assign('index.php');
         } else if (screen == "QHD") {
-            style.href = "CSS/QHD.css";
+            window.location.assign('index.php');
         }
 
         style.rel = "stylesheet";
@@ -113,14 +120,14 @@ JAVASCRIPT;
 </head>
 
 <body>
-    <div id="container">
+    <div id="top">
         <h1>NanoChat</h1>
-        <div id="block">
-            <button id="new_contact" onclick='show_new_contact();'>添加好友</button>
-            <button id="view_contact" onclick='show_contact_list();'>查看好友列表</button>
-            <h2>联系人</h2>
-            <hr />
-        </div>
+    </div>
+    <div id="block">
+        <button id="new_contact" onclick='show_new_contact();'>添加好友</button>
+        <button id="view_contact" onclick='show_contact_list();'>查看好友列表</button>
+        <h2>联系人</h2>
+        <hr />
     </div>
 
     <div style="display: inline-block; ">

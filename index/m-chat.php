@@ -86,6 +86,7 @@ set_cookie($UserName, $ReadAge);
         }, 4000);
     </script>
     <script type="text/javascript" src="/index/js/main.js"></script>
+
 </head>
 
 <body>
@@ -94,15 +95,6 @@ set_cookie($UserName, $ReadAge);
     <div id="input_bar">
         <input type="text" id="input_main" onkeydown="enter('<?php echo $UserName; ?>');"></input>
         <button id="send" onclick="send('<?php echo $UserName; ?>');">发送</button>
-    </div>
-
-    <div style="display: inline-block; ">
-        <div id="nav">
-            <div class="nav_button"></div>
-            <div class="nav_button"></div>
-            <div class="nav_button"></div>
-            <div class="nav_button"></div>
-        </div>
     </div>
 
 </body>

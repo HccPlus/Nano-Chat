@@ -223,7 +223,7 @@ input:focus {
 #contact_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 5.8em;
+    grid-auto-rows: 7.8em;
     width: 48em;
     height: 24em;
     margin: auto;
@@ -235,6 +235,13 @@ input:focus {
     display: none;
 }
 
+.contact_box {
+    display: block;
+    width: 16em;
+    height: 7em;
+    margin: auto;
+}
+
 .contact {
     display: flex;
     align-items: center;
@@ -242,7 +249,7 @@ input:focus {
     height: 5em;
     background-color: #f0f0f0c0;
     filter: drop-shadow(0.4em 0.4em 0.4em #40404080);
-    margin: auto;
+    margin: 0 auto;
     border-radius: 1em;
     padding: 0 0.4em;
     transition-property: filter, background-color;
@@ -254,11 +261,103 @@ input:focus {
     filter: drop-shadow(0.8em 0.8em 0.8em #40404080);
 }
 
+.contact:active {
+    background-color: #d0d0d0;
+    transition-property: filter, background-color;
+    transition-duration: 0s, 0s;
+}
+
+.contact_1 {
+    display: flex;
+    align-items: center;
+    width: 14.6em;
+    height: 5em;
+    background-color: #fff0dcc0;
+    filter: drop-shadow(0.4em 0.4em 0.4em #40404080);
+    margin: 0 auto;
+    border-radius: 1em;
+    padding: 0 0.4em;
+    transition-property: filter, background-color;
+    transition-duration: 0.25s, 0.25s;
+}
+
+.contact_1:hover {
+    background-color: #f0f0f0ff;
+    filter: drop-shadow(0.8em 0.8em 0.8em #40404080);
+}
+
+.contact_1:active {
+    background-color: #d0d0d0;
+    transition-property: filter, background-color;
+    transition-duration: 0s, 0s;
+}
+
+.contact_2 {
+    display: flex;
+    align-items: center;
+    width: 14.6em;
+    height: 5em;
+    background-color: #dcf6ffc0;
+    filter: drop-shadow(0.4em 0.4em 0.4em #40404080);
+    margin: 0 auto;
+    border-radius: 1em;
+    padding: 0 0.4em;
+    transition-property: filter, background-color;
+    transition-duration: 0.25s, 0.25s;
+}
+
+.contact_2:hover {
+    background-color: #f0f0f0ff;
+    filter: drop-shadow(0.8em 0.8em 0.8em #40404080);
+}
+
+.contact_2:active {
+    background-color: #d0d0d0;
+    transition-property: filter, background-color;
+    transition-duration: 0s, 0s;
+}
+
+.cttip {
+    text-align: left;
+    font-size: 0.8em;
+    color: #404040;
+    margin: 0.6em 2em;
+    white-space: nowrap;
+    user-select: none;
+}
+
 .contact_head_photo {
     width: 4em;
     height: 4em;
     border: 0.1em solid #579bb1;
     border-radius: 0.8em;
+    user-select: none;
+}
+
+.operation {
+    display: grid;
+    align-items: center;
+    width: 4em;
+    height: 4em;
+    border: 0.1em solid #ffffff00;
+    border-right-color: #e0e0e0;
+}
+
+.operation_button {
+    width: 3.2em;
+    height: 1.6em;
+    background-color: #ffffff00;
+    margin: 0.4em auto;
+    border: 0;
+    border-radius: 1em;
+    padding: 0 0.4em;
+    user-select: none;
+    transition-property: background-color;
+    transition-duration: 0.25s;
+}
+
+.operation_button:hover {
+    background-color: #ffffff;
 }
 
 #nav {
