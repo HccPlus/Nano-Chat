@@ -47,7 +47,10 @@ if (!$finded) {
 
 // 将信息写入数据库
 $con = connect_SQL("CHATS");
-$Content = preg_replace("/'/", "\\'", $Content);
+$Content = preg_replace("/'/", "&#039", $Content);
+$Content = preg_replace("/</", "&#060", $Content);
+$Content = preg_replace("/>/", "&#062", $Content);
+$Content = preg_replace("/\\\\/", "&#092", $Content);
 $sql = "INSERT INTO `$ChatID` VALUES ('$UserName', 1, '$Content', NOW())";
 mysqli_query($con, $sql);
 mysqli_close($con);
