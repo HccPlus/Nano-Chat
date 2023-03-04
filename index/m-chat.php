@@ -74,7 +74,7 @@ set_cookie($UserName, $ReadAge);
                     let scroll = false;
                     if ($(document).scrollTop() + 1 >= $(document).height() - $(window).height()) scroll = true;
                     $("#message_board").html(xhttp.responseText);
-                    $(document).scrollTop($(document).height() - $(window).height());
+                    if (scroll) $(document).scrollTop($(document).height() - $(window).height());
                 } else if (xhttp.readyState == 4) {
                     $("#message_board").html("网络错误");
                 }
