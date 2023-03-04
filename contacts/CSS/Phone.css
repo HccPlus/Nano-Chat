@@ -2,7 +2,7 @@ body {
     display: block;
     text-align: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom right, #E1D7C6, #F8F4EA);
+    background-image: linear-gradient(to right bottom, #94c8e1, #daf39f);
     margin: 0;
 }
 

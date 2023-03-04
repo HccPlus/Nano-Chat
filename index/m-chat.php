@@ -55,8 +55,8 @@ set_cookie($UserName, $ReadAge);
         xhttp.open("POST", "/index/PHP/Message.php", true);
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                document.getElementById("message_board").innerHTML = xhttp.responseText;
-                $("#message_pad").scrollTop($("#message_pad").prop("scrollHeight"));
+                $("#message_board").html(xhttp.responseText);
+                $(document).scrollTop($(document).height() - $(window).height());
                 currentChatID = chatID;
             }
         }
@@ -71,12 +71,12 @@ set_cookie($UserName, $ReadAge);
             xhttp.open("POST", "/index/PHP/Message.php", true);
             xhttp.onreadystatechange = function() {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    // document.getElementById("message_board").innerHTML = xhttp.responseText;
-                    let currentScroll = $("#message_pad").scrollTop();
+                    let scroll = false;
+                    if ($(document).scrollTop() + 1 >= $(document).height() - $(window).height()) scroll = true;
                     $("#message_board").html(xhttp.responseText);
-                    $("#message_pad").css("scroll-behavior", "auto");
-                    $("#message_pad").scrollTop(currentScroll);
-                    $("#message_pad").css("scroll-behavior", "smooth");
+                    $(document).scrollTop($(document).height() - $(window).height());
+                } else if (xhttp.readyState == 4) {
+                    $("#message_board").html("网络错误");
                 }
             }
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -93,8 +93,8 @@ set_cookie($UserName, $ReadAge);
     <div id="message_board"></div>
 
     <div id="input_bar">
-        <input type="text" id="input_main" onkeydown="enter('<?php echo $UserName; ?>');"></input>
-        <button id="send" onclick="send('<?php echo $UserName; ?>');">发送</button>
+        <input type="text" id="input_main" onkeydown="enter('<?php echo $UserName; ?>');$(document).scrollTop($(document).height() - $(window).height());"></input>
+        <button id="send" onclick="send('<?php echo $UserName; ?>');$(document).scrollTop($(document).height() - $(window).height());">发送</button>
     </div>
 
 </body>

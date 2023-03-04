@@ -2,7 +2,7 @@ body {
     display: block;
     text-align: center;
     min-height: 100vh;
-    background-image: url("/src/bkg2.jpg");
+    background-image: linear-gradient(to right bottom, #94c8e1, #daf39f);
     margin: 0;
     padding: 8vh 0;
     overflow: hidden;

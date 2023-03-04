@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-image: url("/src/bkg2.jpg");
+    background-image: linear-gradient(to right bottom, #94c8e1, #daf39f);
     background-size: 120vw 120vh;
     background-attachment: fixed;
     overflow: hidden;

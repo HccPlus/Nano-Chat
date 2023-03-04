@@ -33,7 +33,6 @@ function open_chat(chatID, title, code) {
         xhttp.open("POST", "/index/PHP/Message.php", true);
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                // document.getElementById("message_board").innerHTML = xhttp.responseText;
                 let currentScroll = $("#message_pad").scrollTop();
                 let scroll = false;
                 if (currentScroll + $("#message_pad").innerHeight() + 1 >= $("#message_pad").prop('scrollHeight')) scroll = true;
@@ -77,6 +76,7 @@ function send(userName) {
     document.getElementById("input_main").value = "";
     newMessage = newMessage.replace(/ /gm, "&#160&#160");
     newMessage = newMessage.replace(/\n/gm, "<br />");
+    console.log(newMessage);
 
     // 若消息为空则退出
     if (!newMessage) {
@@ -94,6 +94,7 @@ function send(userName) {
     let content = '<div class="message_bar"><div id="send_message_' + thisNum + '" class="sending">发送中</div><div class="message_box"><div class="name_box"><div class="name">' + userName + '</div></div><div class="message_me">' + newMessage + '</div></div><image src="/src/myHeadPhoto.jpg" class="head_photo"></image></div>'
     document.getElementById("latest").innerHTML = content;
     document.getElementById("latest").id = "";
+    $("#latest").removeAttr("id");
 
     // 页面滑动至最新消息
     $("#message_pad").scrollTop($("#message_pad").prop("scrollHeight"));
